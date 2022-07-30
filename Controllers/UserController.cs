@@ -84,11 +84,11 @@ namespace user_service.Controller
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var result = await _userManager.ResetPasswordAsync(user, token, login.PassWortd);
+            var result = await _userManager.ResetPasswordAsync(user, token, login.PassWord);
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
-            await _signInManager!.PasswordSignInAsync(user, login.PassWortd, false, false);
+            await _signInManager!.PasswordSignInAsync(user, login.PassWord, false, false);
 
             return GenerateJwtToken(login.Email!, user);
         }
@@ -100,7 +100,7 @@ namespace user_service.Controller
 
             if (user == null) return NotFound();
 
-            var result = await _signInManager!.PasswordSignInAsync(user, login.PassWortd, false, false);
+            var result = await _signInManager!.PasswordSignInAsync(user, login.PassWord, false, false);
 
             if (!result.Succeeded) return BadRequest("Invalid Login");
 

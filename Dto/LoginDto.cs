@@ -8,6 +8,6 @@ namespace user_service.Dto
         public String? Email{ get; set; }
 
         [Required]
-        public String? PassWortd { get; set; }
+        public String? PassWord { get; set; }
     }
 }

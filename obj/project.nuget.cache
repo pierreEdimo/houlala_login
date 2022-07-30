@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zrn5o6ObfXkDFGzOGNk1VLx+OqXwtC/+3jUjoT6au/5TEg/tlapTO3X5COYfe7iTUu7dNMBghLg3qgZVIdP88w==",
+  "dgSpecHash": "3lLcWIXUAKK5CTbBvp9CJumwG0fA7YYkzLMev8TN+H5jItK+ZwsIl3QkVymwHkQDPVoO8x962FRBrBtT79dn6Q==",
   "success": true,
-  "projectFilePath": "/home/pierre/workspace/SpringProject/houlala_smart_project/user-service/user-service.csproj",
+  "projectFilePath": "/home/pierre/workspace/houlala_workspace/houlala_login/user-service.csproj",
   "expectedPackageFiles": [
     "/home/pierre/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/home/pierre/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
