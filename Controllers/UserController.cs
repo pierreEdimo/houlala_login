@@ -59,6 +59,7 @@ namespace user_service.Controller
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<UserToken>> Register([FromBody] RegisterDto model)
         {
             var user = new User
