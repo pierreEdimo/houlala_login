@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddDbContext<UserDbContext>(options =>
-options.UseSqlite("Data Source = houlalaLoginDb"));
+options.UseInMemoryDatabase("houlala-login"));
 
 builder.Services.AddHttpContextAccessor();
 
@@ -60,7 +60,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         RequireExpirationTime = false,
         ValidIssuer = Configuration["JwtIssuer"],
-        ValidAudience = Configuration["JwtIssuer"], 
+        ValidAudience = Configuration["JwtIssuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
         ClockSkew = TimeSpan.Zero
     };
@@ -75,7 +75,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseResponseCaching(); 
+app.UseResponseCaching();
 
 app.UseCors("EnableAll");
 
