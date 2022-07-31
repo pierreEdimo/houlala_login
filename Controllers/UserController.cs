@@ -58,6 +58,12 @@ namespace user_service.Controller
             return _mapper!.Map<UserDto>(user);
         }
 
+        [HttpGet("{Email}")]
+        public async Task<ActionResult<UserDto>> GetUserByEmail(String Email){
+            var user = await _userManager!.FindByEmailAsync(Email); 
+            return _mapper!.Map<UserDto>(user);
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<UserToken>> Register([FromBody] RegisterDto model)
