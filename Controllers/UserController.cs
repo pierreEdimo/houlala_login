@@ -54,13 +54,21 @@ namespace user_service.Controller
         public async Task<ActionResult<UserDto>> GetUser()
         {
             var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+
             var user = await _userManager!.FindByEmailAsync(email);
+
+            if (user == null) return NotFound(); 
+
             return _mapper!.Map<UserDto>(user);
         }
 
         [HttpGet("{Email}")]
         public async Task<ActionResult<UserDto>> GetUserByEmail(String Email){
+
             var user = await _userManager!.FindByEmailAsync(Email); 
+
+            if(user == null ) return NotFound(); 
+
             return _mapper!.Map<UserDto>(user);
         }
 
