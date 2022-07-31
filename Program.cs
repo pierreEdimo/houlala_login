@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddDbContext<UserDbContext>(options =>
-options.UseInMemoryDatabase("houlala-login"));
+options.UseSqlite("Data Source = houlalaLogin"));
 
 builder.Services.AddHttpContextAccessor();
 
