@@ -839,3 +839,5 @@
 /home/pierre/workspace/houlala_workspace/houlala_login/bin/Debug/net6.0/runtimes/win-arm64/native/e_sqlite3.dll
 /home/pierre/workspace/houlala_workspace/houlala_login/bin/Debug/net6.0/runtimes/win-x64/native/e_sqlite3.dll
 /home/pierre/workspace/houlala_workspace/houlala_login/bin/Debug/net6.0/runtimes/win-x86/native/e_sqlite3.dll
+/home/pierre/workspace/houlala_workspace/houlala_login/bin/Debug/net6.0/runtimes/win-arm/lib/net6.0/dotnet-aspnet-codegenerator-design.exe
+/home/pierre/workspace/houlala_workspace/houlala_login/bin/Debug/net6.0/runtimes/win-arm64/lib/net6.0/dotnet-aspnet-codegenerator-design.exe

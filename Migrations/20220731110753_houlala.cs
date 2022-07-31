@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace user_service.Migrations
 {
-    public partial class login : Migration
+    public partial class houlala : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
