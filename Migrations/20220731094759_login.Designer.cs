@@ -11,7 +11,7 @@ using user_service.DbContext;
 namespace user_service.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20220730231228_login")]
+    [Migration("20220731094759_login")]
     partial class login
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

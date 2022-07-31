@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddDbContext<UserDbContext>(options =>
-options.UseSqlite("Data Source = houlalaDb"));
+options.UseSqlite("Data Source = houlalaLoginDb"));
 
 builder.Services.AddHttpContextAccessor();
 
