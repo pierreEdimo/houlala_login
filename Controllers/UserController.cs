@@ -80,9 +80,16 @@ namespace user_service.Controller
             {
                 UserName = model.UserName,
                 Email = model.Email,
+                PhoneNumber = model.PhoneNumber, 
+                City = model.City, 
+                Country = model.Country, 
+                HouseNumber = model.HouseNumber, 
+                Name = model.Name, 
+                StreetName = model.StreetName, 
+                PoBox = model.PoBox
             };
 
-            var result = await _userManager!.CreateAsync(user, model.passWord);
+            var result = await _userManager!.CreateAsync(user, model.PassWord);
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
