@@ -57,17 +57,18 @@ namespace user_service.Controller
 
             var user = await _userManager!.FindByEmailAsync(email);
 
-            if (user == null) return NotFound(); 
+            if (user == null) return NotFound();
 
             return _mapper!.Map<UserDto>(user);
         }
 
         [HttpGet("{Email}")]
-        public async Task<ActionResult<UserDto>> GetUserByEmail(String Email){
+        public async Task<ActionResult<UserDto>> GetUserByEmail(String Email)
+        {
 
-            var user = await _userManager!.FindByEmailAsync(Email); 
+            var user = await _userManager!.FindByEmailAsync(Email);
 
-            if(user == null ) return NotFound(); 
+            if (user == null) return NotFound();
 
             return _mapper!.Map<UserDto>(user);
         }
@@ -80,12 +81,12 @@ namespace user_service.Controller
             {
                 UserName = model.UserName,
                 Email = model.Email,
-                PhoneNumber = model.PhoneNumber, 
-                City = model.City, 
-                Country = model.Country, 
-                HouseNumber = model.HouseNumber, 
-                Name = model.Name, 
-                StreetName = model.StreetName, 
+                PhoneNumber = model.PhoneNumber,
+                City = model.City,
+                Country = model.Country,
+                HouseNumber = model.HouseNumber,
+                Name = model.Name,
+                StreetName = model.StreetName,
                 PoBox = model.PoBox
             };
 
@@ -113,6 +114,45 @@ namespace user_service.Controller
             await _signInManager!.PasswordSignInAsync(user, login.PassWord, false, false);
 
             return GenerateJwtToken(login.Email!, user);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<UserToken>> editUserInformations([FromBody] PersonalData model)
+        {
+            var user = await _userManager!.FindByEmailAsync(model.Email);
+
+            if (user == null) return NotFound();
+
+            user.Email = model.Email;
+            user.UserName = model.UserName;
+            user.PhoneNumber = model.PhoneNumber;
+            user.Name = model.Name;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            return GenerateJwtToken(user.Email!, user);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<UserToken>> editAddressInformations([FromBody] AdressData model)
+        {
+            var user = await _userManager!.FindByEmailAsync(model.Email);
+
+            if (user == null) return NotFound();
+
+            user.StreetName = model.StreetName;
+            user.City = model.City;
+            user.Country = model.Country;
+            user.PoBox = model.PoBox;
+            user.HouseNumber = model.HouseNumber;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            return GenerateJwtToken(user.Email!, user);
         }
 
         [HttpPost]
@@ -152,8 +192,8 @@ namespace user_service.Controller
             return new UserToken()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
-                UserName = loggedUserDto.UserName, 
-                Email = loggedUserDto.Email, 
+                UserName = loggedUserDto.UserName,
+                Email = loggedUserDto.Email,
                 UserId = loggedUserDto.Id
             };
         }
