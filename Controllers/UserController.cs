@@ -116,10 +116,10 @@ namespace user_service.Controller
             return GenerateJwtToken(login.Email!, user);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<UserToken>> editUserInformations([FromBody] PersonalData model)
+        [HttpPut("{Email}")]
+        public async Task<ActionResult<UserToken>> editUserInformations([FromBody] PersonalData model, String Email)
         {
-            var user = await _userManager!.FindByEmailAsync(model.Email);
+            var user = await _userManager!.FindByEmailAsync(Email);
 
             if (user == null) return NotFound();
 
@@ -135,10 +135,27 @@ namespace user_service.Controller
             return GenerateJwtToken(user.Email!, user);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<UserToken>> editAddressInformations([FromBody] AdressData model)
+        [HttpPut("{Email}")]
+        public async Task<ActionResult<UserToken>> editUserEmail([FromBody] EdtiEmail NewEmail, String Email)
         {
-            var user = await _userManager!.FindByEmailAsync(model.Email);
+            var user = await _userManager!.FindByEmailAsync(Email);
+
+            if (user == null) return NotFound();
+
+            user.Email = NewEmail.Email; 
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            return GenerateJwtToken(user.Email!, user);
+        }
+
+
+        [HttpPut("{Email}")]
+        public async Task<ActionResult<UserToken>> editAddressInformations([FromBody] AdressData model, String Email)
+        {
+            var user = await _userManager!.FindByEmailAsync(Email);
 
             if (user == null) return NotFound();
 
