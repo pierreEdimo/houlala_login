@@ -123,7 +123,6 @@ namespace user_service.Controller
 
             if (user == null) return NotFound();
 
-            user.Email = model.Email;
             user.UserName = model.UserName;
             user.PhoneNumber = model.PhoneNumber;
             user.Name = model.Name;
