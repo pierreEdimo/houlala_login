@@ -85,7 +85,8 @@ namespace user_service.Controller
                 City = model.City,
                 Country = model.Country,
                 HouseNumber = model.HouseNumber,
-                Name = model.Name,
+                LastName = model.LastName,
+                FirstName = model.FistName,
                 StreetName = model.StreetName,
                 PoBox = model.PoBox
             };
@@ -125,7 +126,8 @@ namespace user_service.Controller
 
             user.UserName = model.UserName;
             user.PhoneNumber = model.PhoneNumber;
-            user.Name = model.Name;
+            user.LastName = model.LastName;
+            user.FirstName = model.FirstName;
 
             var result = await _userManager.UpdateAsync(user);
 
