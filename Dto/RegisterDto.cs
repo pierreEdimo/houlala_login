@@ -11,7 +11,7 @@ namespace user_service.Dto
         [Required]
         public String? Email { get; set; }
         public String? LastName { get; set; }
-        public String? FistName { get; set; }
+        public String? FirstName { get; set; }
         public String? StreetName { get; set; }
         public String? PoBox { get; set; }
         public String? City { get; set; }
