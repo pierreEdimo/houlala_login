@@ -86,7 +86,7 @@ namespace user_service.Controller
                 Country = model.Country,
                 HouseNumber = model.HouseNumber,
                 LastName = model.LastName,
-                FirstName = model.FistName,
+                FirstName = model.FirstName,
                 StreetName = model.StreetName,
                 PoBox = model.PoBox
             };
