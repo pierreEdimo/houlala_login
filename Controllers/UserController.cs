@@ -73,6 +73,16 @@ namespace user_service.Controller
             return _mapper!.Map<UserDto>(user);
         }
 
+        public async Task<ActionResult<UserDto>> GetUserById(String userId){
+
+            var user = await _userManager!.FindByIdAsync(userId); 
+            
+            if(user == null) return NotFound(); 
+
+            return _mapper!.Map<UserDto>(user); 
+            
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<UserToken>> Register([FromBody] RegisterDto model)
