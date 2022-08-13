@@ -73,14 +73,16 @@ namespace user_service.Controller
             return _mapper!.Map<UserDto>(user);
         }
 
-        public async Task<ActionResult<UserDto>> GetUserById(String userId){
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<UserDto>> GetUserById(String userId)
+        {
 
-            var user = await _userManager!.FindByIdAsync(userId); 
-            
-            if(user == null) return NotFound(); 
+            var user = await _userManager!.FindByIdAsync(userId);
 
-            return _mapper!.Map<UserDto>(user); 
-            
+            if (user == null) return NotFound();
+
+            return _mapper!.Map<UserDto>(user);
+
         }
 
         [HttpPost]
@@ -153,7 +155,7 @@ namespace user_service.Controller
 
             if (user == null) return NotFound();
 
-            user.Email = NewEmail.Email; 
+            user.Email = NewEmail.Email;
 
             var result = await _userManager.UpdateAsync(user);
 
