@@ -9,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace user_service.Controller
 {
@@ -226,6 +226,13 @@ namespace user_service.Controller
                 Email = loggedUserDto.Email,
                 UserId = loggedUserDto.Id
             };
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult<String> VeryUser()
+        {
+            return Ok("subscribed"); 
         }
     }
 }
