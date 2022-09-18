@@ -25,15 +25,13 @@ namespace user_service.Controller
         private readonly IMapper? _mapper;
         private readonly UserDbContext? _context;
 
-        private readonly ILogger? _logger;
 
         public UserController(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IConfiguration configuration,
             IMapper mapper,
-            UserDbContext context,
-            ILogger logger
+            UserDbContext context
         )
         {
             _userManager = userManager;
@@ -41,7 +39,6 @@ namespace user_service.Controller
             _configuration = configuration;
             _mapper = mapper;
             _context = context;
-            _logger = logger;
         }
 
         [HttpGet(Name = nameof(GetAllUsers))]
@@ -221,11 +218,6 @@ namespace user_service.Controller
 
             return GenerateJwtToken(login!.Email!, user);
         }
-
-        [HttpGet("{token}")]
-        [AllowAnonymous]
-        public String ValidateToken(string token) => token;
-
 
         private UserToken GenerateJwtToken(String Email, User user)
         {
