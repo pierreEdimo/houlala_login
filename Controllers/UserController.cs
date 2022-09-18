@@ -25,12 +25,15 @@ namespace user_service.Controller
         private readonly IMapper? _mapper;
         private readonly UserDbContext? _context;
 
+        private readonly ILogger? _logger;
+
         public UserController(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IConfiguration configuration,
             IMapper mapper,
-            UserDbContext context
+            UserDbContext context,
+            ILogger logger
         )
         {
             _userManager = userManager;
@@ -38,6 +41,7 @@ namespace user_service.Controller
             _configuration = configuration;
             _mapper = mapper;
             _context = context;
+            _logger = logger;
         }
 
         [HttpGet(Name = nameof(GetAllUsers))]
@@ -217,6 +221,47 @@ namespace user_service.Controller
 
             return GenerateJwtToken(login!.Email!, user);
         }
+
+        [HttpGet("{token}")]
+        [AllowAnonymous]
+        public string ValidateToken(string token)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["JwtKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            SecurityToken validatedToken;
+            var validator = new JwtSecurityTokenHandler();
+
+            // These need to match the values used to generate the token
+            TokenValidationParameters validationParameters = new TokenValidationParameters();
+            validationParameters.ValidIssuer = _configuration["JwtIssuer"];
+            validationParameters.ValidAudience = _configuration["JwtIssuer"];
+            validationParameters.IssuerSigningKey = key;
+            validationParameters.ValidateIssuerSigningKey = true;
+            validationParameters.ValidateAudience = true;
+
+            if (validator.CanReadToken(token))
+            {
+                ClaimsPrincipal principal;
+                try
+                {
+                    // This line throws if invalid
+                    principal = validator.ValidateToken(token, validationParameters, out validatedToken);
+
+                    // If we got here then the token is valid
+                    if (principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                    {
+                        return principal.Claims.Where(c => c.Type == ClaimTypes.Email).First().Value;
+                    }
+                }
+                catch (Exception e)
+                {
+                    _logger!.LogError(null, e);
+                }
+            }
+
+            return String.Empty;
+        }
+
 
         private UserToken GenerateJwtToken(String Email, User user)
         {
