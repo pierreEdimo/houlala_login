@@ -77,6 +77,48 @@ namespace user_service.Controller
                 return "AUTHENTICATED";
         }
 
+        [HttpGet("{Token}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<string>> ValidateToken(string Token)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["JwtKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var validator = new JwtSecurityTokenHandler();
+
+            // These need to match the values used to generate the token
+            TokenValidationParameters validationParameters = new TokenValidationParameters();
+            validationParameters.ValidIssuer = _configuration["JwtIssuer"];
+            validationParameters.ValidAudience = _configuration["JwtIssuer"];
+            validationParameters.IssuerSigningKey = key;
+            validationParameters.ValidateIssuerSigningKey = true;
+            validationParameters.ValidateAudience = true;
+
+            if (validator.CanReadToken(Token))
+            {
+                try
+                {
+                    // This line throws if invalid
+                    var result = await validator.ValidateTokenAsync(Token, validationParameters);
+
+                    // If we got here then the token is valid
+                    if (result.IsValid)
+                    {
+                        return "Valid";
+                    }
+                    else
+                    {
+                        return "InValid";
+                    }
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+            }
+
+            return String.Empty;
+        }
+
 
 
         [HttpGet("{Email}")]
