@@ -18,6 +18,7 @@ namespace user_service.Dto
         public String? Country { get; set; }
         public String? HouseNumber { get; set; }
         public String? PhoneNumber { get; set; }
+        public String? RoleId{get; set;}
     }
 
 }

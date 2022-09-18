@@ -16,6 +16,7 @@ namespace user_service.Controller
     [ApiController]
     [Route("api/[controller]/[action]")]
     [Produces("application/json")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly UserManager<User>? _userManager;
@@ -74,6 +75,7 @@ namespace user_service.Controller
         }
 
         [HttpGet("{userId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<UserDto>> GetUserById(String userId)
         {
 
@@ -87,6 +89,7 @@ namespace user_service.Controller
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [AllowAnonymous]
         public async Task<ActionResult<UserToken>> Register([FromBody] RegisterDto model)
         {
             var user = new User
@@ -228,11 +231,5 @@ namespace user_service.Controller
             };
         }
 
-        [Authorize]
-        [HttpGet]
-        public ActionResult<String> VeryUser()
-        {
-            return Ok("subscribed"); 
-        }
     }
 }

@@ -11,5 +11,14 @@ namespace user_service.DbContext
     {
         public UserDbContext() {}
         public UserDbContext(DbContextOptions<UserDbContext> options) : base(options) { }
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder){
+        
+        base.OnModelCreating(modelBuilder); 
+        
+        modelBuilder.Entity<User>().HasOne(x => x.Role).WithOne(x => x.User).HasForeignKey<User>(x => x.RoleId); 
+
+    }
     }
 }
