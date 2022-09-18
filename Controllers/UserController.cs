@@ -204,6 +204,7 @@ namespace user_service.Controller
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<UserToken>> Login([FromBody] LoginDto login)
         {
             var user = await _userManager!.FindByEmailAsync(login.Email);
