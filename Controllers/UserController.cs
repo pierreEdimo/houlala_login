@@ -63,6 +63,21 @@ namespace user_service.Controller
             return _mapper!.Map<UserDto>(user);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<string>> CheckAuthenticated()
+        {
+            var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+
+            var user = await _userManager!.FindByEmailAsync(email);
+
+            if (user == null)
+                return "UNAUTHENTICATED";
+            else
+                return "AUTHENTICATED";
+        }
+
+
+
         [HttpGet("{Email}")]
         public async Task<ActionResult<UserDto>> GetUserByEmail(String Email)
         {
