@@ -224,11 +224,10 @@ namespace user_service.Controller
 
         [HttpGet("{token}")]
         [AllowAnonymous]
-        public string ValidateToken(string token)
+        public async Task<ActionResult<String>> ValidateToken(string token)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["JwtKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            SecurityToken validatedToken;
             var validator = new JwtSecurityTokenHandler();
 
             // These need to match the values used to generate the token
@@ -241,16 +240,20 @@ namespace user_service.Controller
 
             if (validator.CanReadToken(token))
             {
-                ClaimsPrincipal principal;
+
                 try
                 {
                     // This line throws if invalid
-                    principal = validator.ValidateToken(token, validationParameters, out validatedToken);
+                    var result = await validator.ValidateTokenAsync(token, validationParameters);
 
                     // If we got here then the token is valid
-                    if (principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                    if (result.IsValid)
                     {
-                        return principal.Claims.Where(c => c.Type == ClaimTypes.Email).First().Value;
+                        return "AUTHENTICATED";
+                    }
+                    else
+                    {
+                        return "UNAUTHENTICATED";
                     }
                 }
                 catch (Exception e)
