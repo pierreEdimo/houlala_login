@@ -92,6 +92,7 @@ namespace user_service.Controller
             validationParameters.IssuerSigningKey = key;
             validationParameters.ValidateIssuerSigningKey = true;
             validationParameters.ValidateAudience = true;
+            validationParameters.ValidateIssuer = true; 
 
             if (validator.CanReadToken(Token))
             {
