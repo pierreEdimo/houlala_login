@@ -79,44 +79,9 @@ namespace user_service.Controller
 
         [HttpGet("{Token}")]
         [AllowAnonymous]
-        public ActionResult<Boolean> ValidateToken(string Token)
+        public ActionResult<String> ValidateToken(string Token)
         {
-            var result = false; 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["JwtKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            SecurityToken validatedToken;
-            var validator = new JwtSecurityTokenHandler();
-
-            // These need to match the values used to generate the token
-            TokenValidationParameters validationParameters = new TokenValidationParameters();
-            validationParameters.ValidIssuer = _configuration["JwtIssuer"];
-            validationParameters.ValidAudience = _configuration["JwtIssuer"];
-            validationParameters.IssuerSigningKey = key;
-            validationParameters.ValidateIssuerSigningKey = true;
-            validationParameters.ValidateAudience = true;
-            validationParameters.ValidateIssuer = true; 
-
-            if (validator.CanReadToken(Token))
-            {
-                ClaimsPrincipal principal;
-                try
-                {
-                    // This line throws if invalid
-                    principal = validator.ValidateToken(Token, validationParameters, out validatedToken);
-
-                    // If we got here then the token is valid
-                    if (principal.HasClaim(c => c.Type == ClaimTypes.Email))
-                    {
-                        result =  true;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message); 
-                }
-            }
-
-            return result;
+            return Token;
         }
 
 
