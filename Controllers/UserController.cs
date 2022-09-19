@@ -81,6 +81,7 @@ namespace user_service.Controller
         [AllowAnonymous]
         public ActionResult<Boolean> ValidateToken(string Token)
         {
+            var result = false; 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["JwtKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             SecurityToken validatedToken;
@@ -106,7 +107,7 @@ namespace user_service.Controller
                     // If we got here then the token is valid
                     if (principal.HasClaim(c => c.Type == ClaimTypes.Email))
                     {
-                        return true;
+                        result =  true;
                     }
                 }
                 catch (Exception e)
@@ -115,7 +116,7 @@ namespace user_service.Controller
                 }
             }
 
-            return  false;
+            return result;
         }
 
 
