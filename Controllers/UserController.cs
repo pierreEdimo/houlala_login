@@ -81,9 +81,26 @@ namespace user_service.Controller
         [AllowAnonymous]
         public ActionResult<String> ValidateToken(string Token)
         {
+            var validator = new JwtSecurityTokenHandler();
+
+            var validationtParamaters = new TokenValidationParameters();
+
+            validationtParamaters.ValidateIssuer = true;
+            validationtParamaters.ValidateAudience = true;
+            validationtParamaters.ValidateIssuerSigningKey = true;
+            validationtParamaters.ValidAudience = _configuration!["JwtIssuer"];
+            validationtParamaters.ValidIssuer = _configuration!["JwtIssuer"];
+            validationtParamaters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["JwtKey"]));
+
+            var principal = validator.ValidateToken(Token, validationtParamaters, out var validatedToken);
+
+            foreach (var claim in principal.Claims)
+            {
+                return claim.Value;
+            }
+
             return Token;
         }
-
 
 
         [HttpGet("{Email}")]
