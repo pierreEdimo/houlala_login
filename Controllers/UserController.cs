@@ -79,27 +79,39 @@ namespace user_service.Controller
 
         [HttpGet("{Token}")]
         [AllowAnonymous]
-        public ActionResult<String> ValidateToken(string Token)
+        public async Task<ActionResult<String>> ValidateToken(string Token)
         {
             var validator = new JwtSecurityTokenHandler();
 
-            var validationtParamaters = new TokenValidationParameters();
+            var validationParameters = new TokenValidationParameters();
 
-            validationtParamaters.ValidateIssuer = true;
-            validationtParamaters.ValidateAudience = true;
-            validationtParamaters.ValidateIssuerSigningKey = true;
-            validationtParamaters.ValidAudience = _configuration!["JwtIssuer"];
-            validationtParamaters.ValidIssuer = _configuration!["JwtIssuer"];
-            validationtParamaters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["JwtKey"]));
+            validationParameters.ValidateIssuer = true;
+            validationParameters.ValidateAudience = true;
+            validationParameters.ValidateIssuerSigningKey = true;
+            validationParameters.ValidAudience = _configuration!["JwtIssuer"];
+            validationParameters.ValidIssuer = _configuration!["JwtIssuer"];
+            validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["JwtKey"]));
+            validationParameters.RequireExpirationTime = false;
 
-            var principal = validator.ValidateToken(Token, validationtParamaters, out var validatedToken);
 
-            foreach (var claim in principal.Claims)
+
+            if (validator.CanReadToken(Token))
             {
-                return claim.Value;
+
+                 var principal = await validator.ValidateTokenAsync(Token, validationParameters);
+
+            // If we got here then the token is valid
+            if (principal.IsValid)
+            {
+                var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value; 
+                return email!; 
+            }
+                else
+                    return "NotValidated";
             }
 
-            return Token;
+            return String.Empty;
+
         }
 
 
