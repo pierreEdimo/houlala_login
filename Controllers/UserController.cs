@@ -99,8 +99,6 @@ namespace user_service.Controller
             // If we got here then the token is valid
             if (principal.IsValid)
             {
-                var email =  principal.ClaimsIdentity.Claims.Where(c => c.Type == ClaimTypes.Email).First().Value; 
-                Console.WriteLine(email); 
                 return "Validated";
             }
             else
