@@ -79,10 +79,10 @@ namespace user_service.Controller
 
         [HttpGet("{Token}")]
         [AllowAnonymous]
-        public async Task<ActionResult<String>> ValidateToken(string Token)
+        public ActionResult<String> ValidateToken(string Token)
         {
             var validator = new JwtSecurityTokenHandler();
-
+            SecurityToken? validatedToken;
             var validationParameters = new TokenValidationParameters();
 
             validationParameters.ValidateIssuer = true;
@@ -95,22 +95,18 @@ namespace user_service.Controller
 
 
 
-            if (validator.CanReadToken(Token))
-            {
-
-                 var principal = await validator.ValidateTokenAsync(Token, validationParameters);
+            var principal = validator.ValidateToken(Token, validationParameters, out validatedToken);
 
             // If we got here then the token is valid
-            if (principal.IsValid)
+            if (!principal.Claims.IsNullOrEmpty())
             {
-                var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value; 
-                return email!; 
+                return principal.Claims.Where(c => c.Type == ClaimTypes.Email).First().Value;
+                
             }
-                else
-                    return "NotValidated";
-            }
+            else
+                return "NotValidated";
 
-            return String.Empty;
+
 
         }
 
