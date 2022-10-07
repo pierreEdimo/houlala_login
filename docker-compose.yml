@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    volumes:
+      - my-db:/var/lib/mssql
+    expose:
+      - "1433"
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "1Secure*Password1"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Express
+  houlala_authentication:
+    image: houlala-authentication:latest
+    expose:
+      - "8000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+volumes:
+  my-db:

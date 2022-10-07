@@ -19,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddDbContext<UserDbContext>(options =>
-options.UseInMemoryDatabase("houlala"));
+options.UseSqlServer(builder.Configuration.GetConnectionString("database")));
 
 builder.Services.AddHttpContextAccessor();
 
@@ -69,17 +69,14 @@ builder.Services.AddAuthentication(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
 
 app.UseResponseCaching();
 
 app.UseCors("EnableAll");
-
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 

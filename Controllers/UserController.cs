@@ -41,6 +41,8 @@ namespace user_service.Controller
             _context = context;
         }
 
+
+        [AllowAnonymous]
         [HttpGet(Name = nameof(GetAllUsers))]
         public async Task<List<UserDto>> GetAllUsers()
         {
