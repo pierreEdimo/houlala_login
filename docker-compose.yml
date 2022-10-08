@@ -24,5 +24,15 @@ services:
       - "8000:8000"
     depends_on:
       - database
+  houlala_storage:
+    image: pierreedimo777/houlala-cloud-storage:latest
+    expose:
+      - "8001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8001
+    ports:
+      - "8001:8001"
+
 volumes:
   my-db:
