@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  database:
+  MS_SQL:
     image: mcr.microsoft.com/mssql/server:2022-latest
     volumes:
       - my-db:/var/lib/mssql
@@ -14,16 +14,16 @@ services:
       ACCEPT_EULA: "Y"
       MSSQL_PID: Express
   houlala_authentication:
-    image: houlala-authentication:latest
+    image: pierreedimo777/houlala-authentication:latest
     expose:
       - "8000"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:8000
     ports:
       - "8000:8000"
     depends_on:
-      - database
+      - MS_SQL
   houlala_storage:
     image: pierreedimo777/houlala-cloud-storage:latest
     expose:
@@ -33,6 +33,21 @@ services:
       - ASPNETCORE_URLS=http://+:8001
     ports:
       - "8001:8001"
+  dbgate:
+    image: dbgate/dbgate
+    restart: always
+    ports:
+      - "8003:3000"
+    volumes:
+      - my-db:/root/.dbgate
+    environment:
+      CONNECTIONS: con1
 
+      LABEL_con1: MsSql
+      SERVER_con1: MS_SQL
+      USER_con1: SA
+      PASSWORD_con1: 1Secure*Password1
+      PORT_con1: 1433
+      ENGINE_con1: mssql@dbgate-plugin-mssql
 volumes:
   my-db:
