@@ -2,9 +2,9 @@ version: "3.8"
 
 services:
   MS_SQL:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/mssql/server:2019-latest
     volumes:
-      - my-db:/var/lib/mssql
+      - ms-server-volume:/var/opt/mssql
     expose:
       - "1433"
     ports:
@@ -51,3 +51,4 @@ services:
       ENGINE_con1: mssql@dbgate-plugin-mssql
 volumes:
   my-db:
+  ms-server-volume:
