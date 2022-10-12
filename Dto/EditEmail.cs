@@ -1,5 +1,6 @@
-using user_service.Dto; 
+namespace user_service.Dto;
 
- public class EdtiEmail{
-    public String? Email{get; set;}
- }
+public class EdtiEmail
+{
+    public String? Email { get; set; }
+}

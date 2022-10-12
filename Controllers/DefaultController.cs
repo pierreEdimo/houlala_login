@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
 
-namespace user_service.Controller;
-
+namespace user_service.Controllers;
 
 [ApiExplorerSettings(IgnoreApi = true)]
 public class DefauiltController : ControllerBase

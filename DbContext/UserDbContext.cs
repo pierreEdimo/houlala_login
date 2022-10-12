@@ -1,24 +1,27 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore; 
-using user_service.Model; 
+using Microsoft.EntityFrameworkCore;
+using user_service.Model;
 using Microsoft.AspNetCore.Identity;
 
-namespace user_service.DbContext
-{
-    public class UserDbContext : IdentityDbContext<User, Role, string, IdentityUserClaim<string>,
+namespace user_service.DbContext;
+
+public class UserDbContext : IdentityDbContext<User, Role, string, IdentityUserClaim<string>,
     IdentityUserRole<string>, IdentityUserLogin<string>,
     IdentityRoleClaim<string>, IdentityUserToken<string>>
+{
+    public UserDbContext()
     {
-        public UserDbContext() {}
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options) { }
-
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder){
-        
-        base.OnModelCreating(modelBuilder); 
-        
-        modelBuilder.Entity<User>().HasOne(x => x.Role).WithOne(x => x.User).HasForeignKey<User>(x => x.RoleId); 
-
     }
+
+    public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
+    {
+    }
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<User>().HasOne(x => x.Role).WithOne(x => x.User).HasForeignKey<User>(x => x.RoleId);
     }
 }

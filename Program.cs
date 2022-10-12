@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-IConfiguration Configuration = builder.Configuration;
+IConfiguration configuration = builder.Configuration;
 
 
 builder.Services.AddControllers();
@@ -19,56 +19,54 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddDbContext<UserDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("database")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("database")));
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddCors(options => options.AddPolicy("EnableAll", builder =>
+builder.Services.AddCors(options => options.AddPolicy("EnableAll", cors =>
 {
-    builder.AllowAnyOrigin()
-           .AllowAnyHeader()
-           .AllowAnyMethod();
+    cors.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
 }));
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 builder.Services.AddIdentity<User, Role>(config =>
-{
-    config.Password.RequireDigit = true;
-    config.Password.RequireLowercase = true;
-    config.Password.RequiredLength = 7;
-    config.Password.RequireNonAlphanumeric = true;
-    config.User.RequireUniqueEmail = true;
-})
-.AddEntityFrameworkStores<UserDbContext>()
-.AddDefaultTokenProviders();
+    {
+        config.Password.RequireDigit = true;
+        config.Password.RequireLowercase = true;
+        config.Password.RequiredLength = 7;
+        config.Password.RequireNonAlphanumeric = true;
+        config.User.RequireUniqueEmail = true;
+    })
+    .AddEntityFrameworkStores<UserDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(config =>
-{
-    config.RequireHttpsMetadata = false;
-    config.SaveToken = true;
-    config.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateIssuerSigningKey = true,
-        RequireExpirationTime = false,
-        ValidIssuer = Configuration["JwtIssuer"],
-        ValidAudience = Configuration["JwtIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
-        ClockSkew = TimeSpan.Zero
-    };
-});
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(config =>
+    {
+        config.RequireHttpsMetadata = false;
+        config.SaveToken = true;
+        config.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateIssuerSigningKey = true,
+            RequireExpirationTime = false,
+            ValidIssuer = configuration["JwtIssuer"],
+            ValidAudience = configuration["JwtIssuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtKey"])),
+            ClockSkew = TimeSpan.Zero
+        };
+    });
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 
 app.UseSwagger();
 
