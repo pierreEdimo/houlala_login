@@ -41,8 +41,6 @@ public class UserController : ControllerBase
         _context = context;
     }
 
-
-    [AllowAnonymous]
     [HttpGet(Name = nameof(GetAllUsers))]
     public async Task<List<UserDto>> GetAllUsers()
     {

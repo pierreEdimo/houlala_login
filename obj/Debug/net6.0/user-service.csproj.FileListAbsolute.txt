@@ -1136,3 +1136,8 @@
 /home/pierre/workspace/houlala_workspace/houlala_login_docker/houlala_login/obj/Debug/net6.0/user-service.pdb
 /home/pierre/workspace/houlala_workspace/houlala_login_docker/houlala_login/obj/Debug/net6.0/user-service.genruntimeconfig.cache
 /home/pierre/workspace/houlala_workspace/houlala_login_docker/houlala_login/obj/Debug/net6.0/ref/user-service.dll
+/home/pierre/workspace/houlala_workspace/houlala_login/obj/Debug/net6.0/staticwebassets/msbuild.user-service.Microsoft.AspNetCore.StaticWebAssets.props
+/home/pierre/workspace/houlala_workspace/houlala_login/obj/Debug/net6.0/staticwebassets/msbuild.build.user-service.props
+/home/pierre/workspace/houlala_workspace/houlala_login/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.user-service.props
+/home/pierre/workspace/houlala_workspace/houlala_login/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.user-service.props
+/home/pierre/workspace/houlala_workspace/houlala_login/obj/Debug/net6.0/staticwebassets.pack.json

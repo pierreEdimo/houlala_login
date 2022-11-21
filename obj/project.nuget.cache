@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5DDN67gIdusfraubsIze3pLms7jT9xxY1nrZhklwRXEUUBdDsSkkHr6Xt5XzQjX1NSynv8aZJwowBE7e0fXuHw==",
+  "dgSpecHash": "szFJcCzIEMG7IvToQj1k2ODxCsRWG1cT4VCJpa2FP896ySWrItRQKhqLGbzWONE5jbOqYXq0lqdc0AK7Af/I1A==",
   "success": true,
   "projectFilePath": "/home/pierre/workspace/houlala_workspace/houlala_login/user-service.csproj",
   "expectedPackageFiles": [
@@ -200,7 +200,10 @@
     "/home/pierre/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/home/pierre/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
     "/home/pierre/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/home/pierre/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
+    "/home/pierre/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
+    "/home/pierre/.nuget/packages/microsoft.netcore.app.ref/6.0.11/microsoft.netcore.app.ref.6.0.11.nupkg.sha512",
+    "/home/pierre/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.11/microsoft.aspnetcore.app.ref.6.0.11.nupkg.sha512",
+    "/home/pierre/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.11/microsoft.netcore.app.host.linux-x64.6.0.11.nupkg.sha512"
   ],
   "logs": []
 }
