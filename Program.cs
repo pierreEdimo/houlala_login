@@ -7,12 +7,16 @@ using user_service.DbContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
+using user_service.filter;
+using user_service.repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => { options.Filters.Add<HttpResponseExceptionFilter>(); })
+    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -22,6 +26,7 @@ builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("database")));
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<IAuthRepository, AuthRepository>();
 
 builder.Services.AddCors(options => options.AddPolicy("EnableAll", cors =>
 {
