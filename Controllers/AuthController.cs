@@ -11,10 +11,10 @@ namespace user_service.Controllers;
 [Authorize]
 public class AuthController : ControllerBase
 {
-    private readonly AuthRepository _repository;
+    private readonly IAuthRepository _repository;
 
 
-    public AuthController(AuthRepository repository)
+    public AuthController(IAuthRepository repository)
     {
         _repository = repository;
     }
@@ -41,7 +41,7 @@ public class AuthController : ControllerBase
 
     [HttpGet("{userId}")]
     [AllowAnonymous]
-    public async Task<ActionResult<UserDto>> GetUserById(String userId)
+    public async Task<ActionResult<UserDto>> GetUserById(string userId)
     {
         return await _repository.GetUserById(userId);
     }
