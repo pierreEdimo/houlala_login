@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4v+EUNocG06l39EC2E9lGt0kIHbkhTBbuA7p2WSnAy/Ab0SuUWPOKbX9zrxgGgRq9T3DF8qqznFzCd/rNpBgOg==",
+  "dgSpecHash": "hB1NVceQLG259uDruEiQUGoTGO7l8nJ9LYoaM0+ij6i1RJe4zVk5wU90qtHAtUJglXBU3ClPAbgIERLsePUaiA==",
   "success": true,
-  "projectFilePath": "/home/pierre/workspace/houlala_workspace/houlala_login/user-service.csproj",
+  "projectFilePath": "/home/pierre/workspace/houlala_login/user-service.csproj",
   "expectedPackageFiles": [
     "/home/pierre/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/home/pierre/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

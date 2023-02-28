@@ -10922,11 +10922,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/pierre/workspace/houlala_workspace/houlala_login/user-service.csproj",
+      "projectUniqueName": "/home/pierre/workspace/houlala_login/user-service.csproj",
       "projectName": "user-service",
-      "projectPath": "/home/pierre/workspace/houlala_workspace/houlala_login/user-service.csproj",
+      "projectPath": "/home/pierre/workspace/houlala_login/user-service.csproj",
       "packagesPath": "/home/pierre/.nuget/packages/",
-      "outputPath": "/home/pierre/workspace/houlala_workspace/houlala_login/obj/",
+      "outputPath": "/home/pierre/workspace/houlala_login/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/pierre/.nuget/NuGet/NuGet.Config"
@@ -11030,7 +11030,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.200/RuntimeIdentifierGraph.json"
       }
     }
   }

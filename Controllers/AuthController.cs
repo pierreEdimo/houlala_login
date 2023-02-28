@@ -55,6 +55,8 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [AllowAnonymous]
     public async Task<ActionResult<UserToken>> RenewPassword([FromBody] LoginDto login)
     {
         return await _repository.RenewPassword(login);
