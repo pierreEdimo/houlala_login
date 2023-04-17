@@ -54,11 +54,11 @@ public class AuthController : ControllerBase
         return await _repository.Register(model);
     }
 
-    [HttpPut]
+    [HttpPut("{email}")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
-    public async Task<ActionResult<UserToken>> EditSellerInfo([FromBody] SellerInfo info)
+    public async Task<ActionResult<UserToken>> EditSellerInfo([FromBody] SellerInfo info, string email)
     {
-        return await _repository.EditSellerInfo(info);
+        return await _repository.EditSellerInfo(info, email);
     }
 
     [HttpPost]

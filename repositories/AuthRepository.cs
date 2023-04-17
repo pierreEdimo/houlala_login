@@ -174,9 +174,9 @@ public class AuthRepository : IAuthRepository
         return GenerateJwtToken(login.Email!, user);
     }
 
-    public async Task<ActionResult<UserToken>> EditSellerInfo(SellerInfo info)
+    public async Task<ActionResult<UserToken>> EditSellerInfo(SellerInfo info, string email)
     {
-        var user = await _userManager!.FindByEmailAsync(info.Email);
+        var user = await _userManager!.FindByEmailAsync(email);
         if (user == null)
             throw new LoginException("L'utilisateur n'a pas ete retrouve", (int)HttpStatusCode.NotFound);
         user.UserName = info.UserName;
