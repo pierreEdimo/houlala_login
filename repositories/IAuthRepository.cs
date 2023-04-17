@@ -15,4 +15,5 @@ public interface IAuthRepository
     Task<ActionResult<UserToken>> EditUserEmail(EditEmail newEmail, string email);
     Task<ActionResult<UserToken>> EditAddressInformations(AdressData model, string email);
     Task<ActionResult<UserToken>> Login(LoginDto login);
+    Task<ActionResult<UserToken>> EditSellerInfo(SellerInfo info);
 }

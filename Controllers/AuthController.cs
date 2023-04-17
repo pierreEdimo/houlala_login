@@ -54,6 +54,13 @@ public class AuthController : ControllerBase
         return await _repository.Register(model);
     }
 
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status202Accepted)]
+    public async Task<ActionResult<UserToken>> EditSellerInfo([FromBody] SellerInfo info)
+    {
+        return await _repository.EditSellerInfo(info);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [AllowAnonymous]
