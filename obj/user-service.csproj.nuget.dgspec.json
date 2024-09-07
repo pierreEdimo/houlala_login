@@ -1,31 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/pierre/workspace/houlala_login/user-service.csproj": {}
+    "/home/pnk/workspace/houlala_v2/houlala_login/user-service.csproj": {}
   },
   "projects": {
-    "/home/pierre/workspace/houlala_login/user-service.csproj": {
+    "/home/pnk/workspace/houlala_v2/houlala_login/user-service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pierre/workspace/houlala_login/user-service.csproj",
+        "projectUniqueName": "/home/pnk/workspace/houlala_v2/houlala_login/user-service.csproj",
         "projectName": "user-service",
-        "projectPath": "/home/pierre/workspace/houlala_login/user-service.csproj",
-        "packagesPath": "/home/pierre/.nuget/packages/",
-        "outputPath": "/home/pierre/workspace/houlala_login/obj/",
+        "projectPath": "/home/pnk/workspace/houlala_v2/houlala_login/user-service.csproj",
+        "packagesPath": "/home/pnk/.nuget/packages/",
+        "outputPath": "/home/pnk/workspace/houlala_v2/houlala_login/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/pierre/.nuget/NuGet/NuGet.Config"
+          "/home/pnk/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net8.0"
         ],
         "sources": {
-          "/usr/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -36,8 +35,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -45,55 +44,55 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[6.0.6, )"
+              "version": "[8.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[6.7.3, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[6.19.0, )"
+              "version": "[7.7.1, )"
             },
             "System.Linq.Dynamic.Core": {
               "target": "Package",
-              "version": "[1.2.18, )"
+              "version": "[1.3.14, )"
             }
           },
           "imports": [
@@ -115,7 +114,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
