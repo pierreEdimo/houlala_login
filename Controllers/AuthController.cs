@@ -40,7 +40,6 @@ public class AuthController : ControllerBase
     }
 
     [HttpGet("{userId}")]
-    [AllowAnonymous]
     public async Task<ActionResult<UserDto>> GetUserById(string userId)
     {
         return await _repository.GetUserById(userId);
