@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace user_service.DbContext;
 
-public class UserDbContext : IdentityDbContext<User, Role, string, IdentityUserClaim<string>,
+public class UserDbContext : IdentityDbContext<UserEntity, Role, string, IdentityUserClaim<string>,
     IdentityUserRole<string>, IdentityUserLogin<string>,
     IdentityRoleClaim<string>, IdentityUserToken<string>>
 {
@@ -22,6 +22,6 @@ public class UserDbContext : IdentityDbContext<User, Role, string, IdentityUserC
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<User>().HasOne(x => x.Role).WithOne(x => x.User).HasForeignKey<User>(x => x.RoleId);
+        modelBuilder.Entity<UserEntity>().HasOne(x => x.Role).WithOne(x => x.User).HasForeignKey<UserEntity>(x => x.RoleId);
     }
 }

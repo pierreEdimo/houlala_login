@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using user_service.Dto;
 using Microsoft.AspNetCore.Authorization;
 using user_service.repositories;
+using Microsoft.AspNetCore.Identity;
+using user_service.Model;
 
 namespace user_service.Controllers;
 
@@ -13,10 +15,14 @@ public class AuthController : ControllerBase
 {
     private readonly IAuthRepository _repository;
 
+    private readonly UserManager<UserEntity> _userManager;
 
-    public AuthController(IAuthRepository repository)
+
+
+    public AuthController(IAuthRepository repository, UserManager<UserEntity> userManager)
     {
         _repository = repository;
+        _userManager = userManager;
     }
 
     [HttpGet(Name = nameof(GetAllUsers))]
@@ -25,24 +31,10 @@ public class AuthController : ControllerBase
         return await _repository.GetAllUsers();
     }
 
-    [HttpGet("{token}")]
-    [AllowAnonymous]
-    public async Task<ActionResult<String>> ValidateToken(string token)
+    [HttpGet]
+    public async Task<ActionResult<UserDto>> GetConnectedUser()
     {
-        return await _repository.ValidateToken(token);
-    }
-
-
-    [HttpGet("{email}")]
-    public async Task<ActionResult<UserDto>> GetUserByEmail(String email)
-    {
-        return await _repository.GetUserByEmail(email);
-    }
-
-    [HttpGet("{userId}")]
-    public async Task<ActionResult<UserDto>> GetUserById(string userId)
-    {
-        return await _repository.GetUserById(userId);
+        return await _repository.GetConnectedUser();
     }
 
     [HttpPost]
@@ -51,40 +43,6 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<UserToken>> Register([FromBody] RegisterDto model)
     {
         return await _repository.Register(model);
-    }
-
-    [HttpPut("{email}")]
-    [ProducesResponseType(StatusCodes.Status202Accepted)]
-    public async Task<ActionResult<UserToken>> EditSellerInfo([FromBody] SellerInfo info, string email)
-    {
-        return await _repository.EditSellerInfo(info, email);
-    }
-
-    [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [AllowAnonymous]
-    public async Task<ActionResult<UserToken>> RenewPassword([FromBody] LoginDto login)
-    {
-        return await _repository.RenewPassword(login);
-    }
-
-    [HttpPut("{email}")]
-    public async Task<ActionResult<UserToken>> EditUserInformations([FromBody] PersonalData model, String email)
-    {
-        return await _repository.EditUserInformations(model, email);
-    }
-
-    [HttpPut("{email}")]
-    public async Task<ActionResult<UserToken>> EditUserEmail([FromBody] EditEmail newEmail, String email)
-    {
-        return await _repository.EditUserEmail(newEmail, email);
-    }
-
-
-    [HttpPut("{Email}")]
-    public async Task<ActionResult<UserToken>> EditAddressInformations([FromBody] AdressData model, String email)
-    {
-        return await _repository.EditAddressInformations(model, email);
     }
 
     [HttpPost]

@@ -4,5 +4,5 @@ namespace user_service.Model;
 
 public class Role : IdentityRole
 {
-    public virtual User? User { get; set; }
+    public virtual UserEntity? User { get; set; }
 }

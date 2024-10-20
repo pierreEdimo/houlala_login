@@ -8,7 +8,7 @@ public class AutoMapperProfiles : Profile
 {
     public AutoMapperProfiles()
     {
-        CreateMap<User, UserDto>()
+        CreateMap<UserEntity, UserDto>()
             .ForMember(x => x.Email, options => options.MapFrom(x => x.Email))
             .ForMember(x => x.Id, options => options.MapFrom(x => x.Id))
             .ForMember(x => x.UserName, options => options.MapFrom(x => x.UserName));
