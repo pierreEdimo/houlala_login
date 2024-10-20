@@ -26,6 +26,7 @@ builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("database")));
 
 builder.Services.AddHttpContextAccessor();
+//builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<IAuthRepository, AuthRepository>();
 
 builder.Services.AddCors(options => options.AddPolicy("EnableAll", cors =>
@@ -37,7 +38,7 @@ builder.Services.AddCors(options => options.AddPolicy("EnableAll", cors =>
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-builder.Services.AddIdentity<User, Role>(config =>
+builder.Services.AddIdentity<UserEntity, Role>(config =>
     {
         config.Password.RequireDigit = true;
         config.Password.RequireLowercase = true;
@@ -47,6 +48,8 @@ builder.Services.AddIdentity<User, Role>(config =>
     })
     .AddEntityFrameworkStores<UserDbContext>()
     .AddDefaultTokenProviders();
+
+JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
 
 builder.Services.AddAuthentication(options =>
     {
