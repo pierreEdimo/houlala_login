@@ -1,7 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using user_service.Model;
-using Microsoft.AspNetCore.Identity;
 
 namespace user_service.DbContext;
 
@@ -17,11 +17,16 @@ public class UserDbContext : IdentityDbContext<UserEntity, Role, string, Identit
     {
     }
 
+    public DbSet<Address>? Addresses { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<UserEntity>().HasOne(x => x.Role).WithOne(x => x.User).HasForeignKey<UserEntity>(x => x.RoleId);
+        modelBuilder.Entity<UserEntity>().HasOne(x => x.Role).WithOne(x => x.User)
+            .HasForeignKey<UserEntity>(x => x.RoleId);
+
+        modelBuilder.Entity<Address>().HasOne(x => x.User).WithMany(x => x.Addresses).HasForeignKey(x => x.UserId);
     }
 }

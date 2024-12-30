@@ -12,5 +12,9 @@ public class AutoMapperProfiles : Profile
             .ForMember(x => x.Email, options => options.MapFrom(x => x.Email))
             .ForMember(x => x.Id, options => options.MapFrom(x => x.Id))
             .ForMember(x => x.UserName, options => options.MapFrom(x => x.UserName));
+
+        CreateMap<Address, AddressDto>().ReverseMap();
+
+        CreateMap<CreateAddressDto, Address>().ReverseMap();
     }
 }

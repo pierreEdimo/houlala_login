@@ -281,9 +281,12 @@
 /home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/staticwebassets/msbuild.buildTransitive.user-service.props
 /home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/staticwebassets.pack.json
 /home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/scopedcss/bundle/user-service.styles.css
-/home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/user-service.csproj.CopyComplete
 /home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/user-service.dll
 /home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/refint/user-service.dll
 /home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/user-service.pdb
 /home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/user-service.genruntimeconfig.cache
 /home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/ref/user-service.dll
+/home/pnk/workspace/houlala_v2/houlala_login/bin/Release/net8.0/user-service.staticwebassets.endpoints.json
+/home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/staticwebassets.build.endpoints.json
+/home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/staticwebassets/msbuild.user-service.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/home/pnk/workspace/houlala_v2/houlala_login/obj/Release/net8.0/user-ser.B91C3E7D.Up2Date

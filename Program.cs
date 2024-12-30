@@ -1,14 +1,13 @@
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
-using user_service.Model;
-using user_service.DbContext;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using user_service.DbContext;
 using user_service.filter;
+using user_service.Model;
 using user_service.repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +27,7 @@ builder.Services.AddDbContext<UserDbContext>(options =>
 builder.Services.AddHttpContextAccessor();
 //builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<IAuthRepository, AuthRepository>();
+builder.Services.AddTransient<IAddressRepository, AddressRepository>();
 
 builder.Services.AddCors(options => options.AddPolicy("EnableAll", cors =>
 {

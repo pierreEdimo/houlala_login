@@ -14,11 +14,11 @@ public class HttpResponseExceptionFilter : IActionFilter
     {
         if (context.Exception is LoginException exception)
         {
-            HttpExceptionResult resultObject = new HttpExceptionResult()
+            var resultObject = new HttpExceptionResult
             {
                 Status = exception.Status,
                 Message = exception.Message,
-                Source = exception.Source,
+                Source = exception.Source
             };
 
             context.Result = new ObjectResult(resultObject)

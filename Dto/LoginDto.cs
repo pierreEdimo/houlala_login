@@ -4,6 +4,6 @@ namespace user_service.Dto;
 
 public class LoginDto
 {
-    [Required] public String? Email { get; set; }
-    [Required] public String? PassWord { get; set; }
+    [Required] public string? Email { get; set; }
+    [Required] public string? PassWord { get; set; }
 }

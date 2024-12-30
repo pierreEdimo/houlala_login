@@ -4,16 +4,12 @@ namespace user_service.Dto;
 
 public class RegisterDto
 {
-    [Required] public String? UserName { get; set; }
-    [Required] public String? PassWord { get; set; }
-    [Required] public String? Email { get; set; }
-    public String? LastName { get; set; }
-    public String? FirstName { get; set; }
-    public String? StreetName { get; set; }
-    public String? PoBox { get; set; }
-    public String? City { get; set; }
-    public String? Country { get; set; }
-    public String? HouseNumber { get; set; }
-    public String? PhoneNumber { get; set; }
-    public String? RoleId { get; set; }
+    [Required] public string? UserName { get; set; }
+    [Required] public string? PassWord { get; set; }
+    [Required] public string? Email { get; set; }
+    public string? LastName { get; set; }
+    public string? FirstName { get; set; }
+    public string? PhoneNumber { get; set; }
+
+    public string? RoleId { get; set; }
 }

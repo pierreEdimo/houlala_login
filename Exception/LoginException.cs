@@ -4,10 +4,6 @@ namespace user_service.exception;
 
 public class LoginException : Exception
 {
-    public int Status { get; set; }
-    public string? TimeStamp { get; set; }
-    public IEnumerable<IdentityError>? Errors { get; set; }
-
     public LoginException()
     {
     }
@@ -27,4 +23,8 @@ public class LoginException : Exception
         Status = status;
         Errors = errors;
     }
+
+    public int Status { get; set; }
+    public string? TimeStamp { get; set; }
+    public IEnumerable<IdentityError>? Errors { get; set; }
 }

@@ -2,15 +2,15 @@ namespace user_service.Dto;
 
 public class UserDto
 {
-    public String? Email { get; set; }
-    public String? Id { get; set; }
-    public String? UserName { get; set; }
-    public String? LastName { get; set; }
-    public String? FirstName { get; set; }
-    public String? StreetName { get; set; }
-    public String? PhoneNumber { get; set; }
-    public String? PoBox { get; set; }
-    public String? City { get; set; }
-    public String? Country { get; set; }
-    public String? HouseNumber { get; set; }
+    public string? Email { get; set; }
+
+    public string? Id { get; set; }
+
+    public string? UserName { get; set; }
+
+    public string? LastName { get; set; }
+
+    public string? FirstName { get; set; }
+
+    public string? PhoneNumber { get; set; }
 }
