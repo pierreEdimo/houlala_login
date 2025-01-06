@@ -22,8 +22,8 @@ public class AddressesController(IAuthRepository authRepository, IAddressReposit
     [HttpPost]
     public async Task<ActionResult<AddressDto>> CreateAddress([FromBody] CreateAddressDto createAddressDto)
     {
-        var connectedUser =  authRepository.GetConnectedUser().Result.Value;
-        
+        var connectedUser = authRepository.GetConnectedUser().Result.Value;
+
         return await addressRepository.CreateAddress(createAddressDto, connectedUser!.Id!);
     }
 

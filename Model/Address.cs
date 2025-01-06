@@ -14,7 +14,7 @@ public class Address
 
     [StringLength(255)] public string? PoBox { get; set; }
 
-    [StringLength(255)] public int? HouseNumber { get; set; }
+    [StringLength(255)] public string? HouseNumber { get; set; }
 
     public string? UserId { get; set; }
 

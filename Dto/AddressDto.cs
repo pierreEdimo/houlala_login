@@ -7,5 +7,5 @@ public class AddressDto
     public string? Country { get; set; }
     public string? PoBox { get; set; }
     public string? City { get; set; }
-    public int? HouseNumber { get; set; }
+    public string? HouseNumber { get; set; }
 }
