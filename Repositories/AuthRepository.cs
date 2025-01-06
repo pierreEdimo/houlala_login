@@ -41,9 +41,6 @@ public class AuthRepository(
         {
             UserName = model.UserName,
             Email = model.Email,
-            PhoneNumber = model.PhoneNumber,
-            LastName = model.LastName,
-            FirstName = model.FirstName
         };
         var result = await _userManager!.CreateAsync(user, model.PassWord!);
         if (!result.Succeeded)
@@ -54,12 +51,7 @@ public class AuthRepository(
     public async Task<ActionResult<UserDto>> GetConnectedUser()
 
     {
-        var email = _httpContext!.HttpContext!.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-        if (email == null)
-            throw new LoginException("Email not found", (int)HttpStatusCode.BadRequest);
-        var user = await _userManager!.FindByEmailAsync(email);
-        if (user == null)
-            throw new LoginException("No user found", (int)HttpStatusCode.NotFound);
+        var user = await _getCurrentUser();
         return mapper.Map<UserDto>(user);
     }
 
@@ -73,6 +65,27 @@ public class AuthRepository(
         if (!result.Succeeded)
             throw new LoginException("Connection invalide", (int)HttpStatusCode.BadRequest);
         return GenerateJwtToken(login.Email!, user);
+    }
+
+    public async Task<ActionResult<UserToken>> EditUserInfos(EditUserDto model)
+    {
+        var user = await _getCurrentUser();
+
+        if (model.UserName != null) user.UserName = model.UserName;
+
+        if (model.LastName != null) user.LastName = model.LastName;
+
+        if (model.FirstName != null) user.FirstName = model.FirstName;
+
+        if (model.PhoneNumber != null) user.PhoneNumber = model.PhoneNumber;
+
+        if (model.Email != null) user.Email = model.Email;
+
+        var result = await _userManager!.UpdateAsync(user);
+
+        if (!result.Succeeded) throw new LoginException(result.Errors, (int)HttpStatusCode.BadRequest);
+
+        return GenerateJwtToken(model.Email!, user);
     }
 
     private UserToken GenerateJwtToken(string email, UserEntity user)
@@ -97,5 +110,16 @@ public class AuthRepository(
         {
             Token = new JwtSecurityTokenHandler().WriteToken(token)
         };
+    }
+
+    private async Task<UserEntity> _getCurrentUser()
+    {
+        var email = _httpContext!.HttpContext!.User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        if (email == null)
+            throw new LoginException("Email not found", (int)HttpStatusCode.BadRequest);
+        var user = await _userManager!.FindByEmailAsync(email);
+        if (user == null)
+            throw new LoginException("No user found", (int)HttpStatusCode.NotFound);
+        return user;
     }
 }

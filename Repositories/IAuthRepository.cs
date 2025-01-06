@@ -9,4 +9,5 @@ public interface IAuthRepository
     Task<ActionResult<UserDto>> GetConnectedUser();
     Task<ActionResult<UserToken>> Register(RegisterDto model);
     Task<ActionResult<UserToken>> Login(LoginDto login);
+    Task<ActionResult<UserToken>> EditUserInfos(EditUserDto model);
 }

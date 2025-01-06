@@ -38,4 +38,10 @@ public class AuthController(IAuthRepository repository)
     {
         return await repository.Login(login);
     }
+
+    [HttpPut]
+    public async Task<ActionResult<UserToken>> EditUserInfo([FromBody] EditUserDto model)
+    {
+        return await repository.EditUserInfos(model);
+    }
 }
