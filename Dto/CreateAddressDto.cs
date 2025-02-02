@@ -7,4 +7,6 @@ public class CreateAddressDto
     public string? City { get; set; }
     public string? PoBox { get; set; }
     public string? HouseNumber { get; set; }
+    public string? LastName { get; init; }
+    public string? FirstName { get; init; }
 }

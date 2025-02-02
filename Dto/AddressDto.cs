@@ -2,10 +2,12 @@ namespace user_service.Dto;
 
 public class AddressDto
 {
-    public int Id { get; set; }
-    public string? Street { get; set; }
-    public string? Country { get; set; }
-    public string? PoBox { get; set; }
-    public string? City { get; set; }
-    public string? HouseNumber { get; set; }
+    public int Id { get; init; }
+    public string? Street { get; init; }
+    public string? Country { get; init; }
+    public string? PoBox { get; init; }
+    public string? City { get; init; }
+    public string? HouseNumber { get; init; }
+    public string? LastName { get; init; }
+    public string? FirstName { get; init; }
 }
