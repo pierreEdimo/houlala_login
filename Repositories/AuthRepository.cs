@@ -89,6 +89,19 @@ public class AuthRepository(
         return GenerateJwtToken(model.Email!, user);
     }
 
+    public async Task<ActionResult<UserToken>> EditDeliveryAddressId(int id)
+    {
+        var user = await _getCurrentUser();
+
+        user.DeliveryAddressId = id; 
+        
+        var result = await _userManager!.UpdateAsync(user);
+        
+        if (!result.Succeeded) throw new LoginException(result.Errors, (int)HttpStatusCode.BadRequest);
+        
+        return GenerateJwtToken(user.Email!, user);
+    }
+
     private UserToken GenerateJwtToken(string email, UserEntity user)
     {
         var claims = new List<Claim>

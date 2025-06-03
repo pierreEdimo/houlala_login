@@ -44,4 +44,10 @@ public class AuthController(IAuthRepository repository)
     {
         return await repository.EditUserInfos(model);
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<UserToken>> EditAddressId(int id)
+    {
+        return await repository.EditDeliveryAddressId(id);
+    }
 }
