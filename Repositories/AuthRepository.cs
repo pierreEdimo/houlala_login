@@ -41,6 +41,7 @@ public class AuthRepository(
         {
             UserName = model.UserName,
             Email = model.Email,
+            DeliveryAddressId = 1
         };
         var result = await _userManager!.CreateAsync(user, model.PassWord!);
         if (!result.Succeeded)
