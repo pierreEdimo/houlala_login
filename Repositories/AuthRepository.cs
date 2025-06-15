@@ -41,6 +41,7 @@ public class AuthRepository(
         {
             UserName = model.UserName,
             Email = model.Email,
+            DeliveryAddressId = 1
         };
         var result = await _userManager!.CreateAsync(user, model.PassWord!);
         if (!result.Succeeded)
@@ -86,6 +87,19 @@ public class AuthRepository(
         if (!result.Succeeded) throw new LoginException(result.Errors, (int)HttpStatusCode.BadRequest);
 
         return GenerateJwtToken(model.Email!, user);
+    }
+
+    public async Task<ActionResult<UserToken>> EditDeliveryAddressId(int id)
+    {
+        var user = await _getCurrentUser();
+
+        user.DeliveryAddressId = id; 
+        
+        var result = await _userManager!.UpdateAsync(user);
+        
+        if (!result.Succeeded) throw new LoginException(result.Errors, (int)HttpStatusCode.BadRequest);
+        
+        return GenerateJwtToken(user.Email!, user);
     }
 
     private UserToken GenerateJwtToken(string email, UserEntity user)

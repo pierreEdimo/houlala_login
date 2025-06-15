@@ -10,4 +10,5 @@ public interface IAuthRepository
     Task<ActionResult<UserToken>> Register(RegisterDto model);
     Task<ActionResult<UserToken>> Login(LoginDto login);
     Task<ActionResult<UserToken>> EditUserInfos(EditUserDto model);
+    Task<ActionResult<UserToken>> EditDeliveryAddressId(int id);
 }
